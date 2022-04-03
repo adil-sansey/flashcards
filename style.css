@@ -1,8 +1,6 @@
 /* main-color: #caf0f8;
 primary-color: #90e0ef;
-secondary-color: #0077b6; 
-
-*/
+secondary-color: #0077b6; */
 
 *,
 *::after,
@@ -57,14 +55,52 @@ body {
   border-radius: 32px;
 }
 
-.card {
-  width: 150px;
-  height: 150px;
+.card-container {
+  perspective: 1000px;
+}
 
+.card,
+.front,
+.back {
   display: flex;
   justify-content: center;
   align-items: center;
-
   border-radius: 32px;
+}
+
+.card {
+  position: relative;
+  width: 150px;
+  height: 150px;
+
   background-color: #fff;
+
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+  cursor: pointer;
+}
+
+.card-container:hover .card {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  width: 140px;
+  height: 140px;
+  position: absolute;
+}
+
+.front {
+  background-color: #0077b6;
+  backface-visibility: hidden;
+
+  z-index: 1;
+}
+
+.back {
+  background-color: #caf0f8;
+  transform: rotateY(180deg);
+
+  z-index: -1;
 }
